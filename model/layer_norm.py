@@ -1,3 +1,5 @@
+# Note: layer_norm() was integrated into transformer.py via the LayerNorm class.
+# PyTorch's F.layer_norm is used in the forward pass for autograd compatibility, but the logic here is preserved as the original reference implementation.
 import numpy as np
 import math
 
