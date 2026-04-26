@@ -39,7 +39,6 @@ class LayerNorm(nn.Module):
         return F.layer_norm(x, x.shape[-1:], self.weights, self.bias, self.epsilon)
 
 
-
 class MultiHeadAttention(nn.Module):
     def __init__(self,d_model,n_heads,dropout=0.1):
         super().__init__()
@@ -178,6 +177,34 @@ class Transformer(nn.Module):
 
         return generated
 
+    def save(self,path,vocab,optimizer=None,scheduler=None):
+        checkpoint={
+            "model"  : self.state_dict(),
+            "vocab"  : vocab,
+            "d_model": self.d_model,
+            "pad_id" : self.pad_id,
+        }
+        if optimizer  is not None: checkpoint["optimizer"] =optimizer.state_dict()
+        if scheduler  is not None: checkpoint["step_num"]  =scheduler.step_num
+        torch.save(checkpoint,path)
+        print(f"Saved to {path}")
+
+    @staticmethod
+    def load(path,device="cpu"):
+        checkpoint=torch.load(path,map_location=device)
+        vocab   =checkpoint["vocab"]
+        d_model =checkpoint["d_model"]
+        pad_id  =checkpoint["pad_id"]
+        model=Transformer(
+            src_vocab_size=len(vocab),
+            tgt_vocab_size=len(vocab),
+            d_model=d_model,
+            pad_id=pad_id,
+        ).to(device)
+        model.load_state_dict(checkpoint["model"])
+        print(f"Loaded from {path}")
+        return model,checkpoint
+
 
 class LabelSmoothingLoss(nn.Module):
     def __init__(self,vocab_size,pad_id=0,smoothing=0.1):
@@ -213,4 +240,3 @@ class WarmupScheduler:
         for group in self.optimizer.param_groups:
             group['lr']=lr
         return lr
-
