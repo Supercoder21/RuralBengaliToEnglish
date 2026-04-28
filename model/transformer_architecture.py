@@ -8,7 +8,6 @@ import torch.nn.functional as F
 
 from positional_enc import positional_encoding
 from layer_norm import layer_norm
-from attention import attention
 
 def to_numpy(t):
     return t.detach().cpu().numpy()
