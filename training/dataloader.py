@@ -1,4 +1,4 @@
-## NOTICE: Used for primitive transformer implementation
+## NOTICE: Used in primitive transformer implementation
 import torch
 
 PAD,BOS,EOS,UNK = "<PAD>","<BOS>","<EOS>","<UNK>"
