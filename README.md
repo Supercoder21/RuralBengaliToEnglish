@@ -1,6 +1,6 @@
 # Rural Bengali Dialect → English: A Transformer-Based Translation Pipeline
 
-A sequence-to-sequence pipeline for transliterating rural Bengali dialect into romanized dialect into English via four stages: audio → Romanized rural Bengali audio speech recogniztion, rural → standard Bengali dialect normalization, standard Bengali dialect unromanization, and then standard Bengali → English translation.
+A sequence-to-sequence pipeline for transliterating rural Bengali dialect into English via three stages: audio → rural Bengali, rural → standard Bengali dialect normalization, and then standard Bengali → English translation.
 
 ---
 
@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 The corpus is sourced from the BanglaRegionalTextCorpus (Ahmed et al., 2026), available at https://doi.org/10.1016/j.dib.2026.001381. Download the Excel file and place it in the root directory. It is not included in this repo.
 
-To generate the romanized parallel corpus, run:
+An earlier attempt trained on a romanized parallel corpus. To generate a romanized parallel corpus, run:
 ```
 python data/romanize.py
 ```
