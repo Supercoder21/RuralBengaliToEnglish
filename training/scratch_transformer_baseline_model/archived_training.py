@@ -5,7 +5,7 @@
 import torch
 import random
 import torch.optim as optim
-from transformer_architecture import Transformer, LabelSmoothingLoss, WarmupScheduler # Tranfer file to Training folder before use
+from transformer_architecture import Transformer, LabelSmoothingLoss, WarmupScheduler # Tranfer files to Training folder before use
 from dataloader import load_pairs, CharTokenizer, make_batches
 
 pairs = load_pairs("corpus_aligned.txt")
