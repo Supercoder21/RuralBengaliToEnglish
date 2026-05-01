@@ -18,12 +18,6 @@ pip install -r requirements.txt
 
 The corpus is sourced from the BanglaRegionalTextCorpus (Ahmed et al., 2026), available at https://doi.org/10.1016/j.dib.2026.001381. Download the Excel file and place it in the root directory. It is not included in this repo.
 
-An earlier attempt trained on a romanized parallel corpus. To generate a romanized parallel corpus, run:
-```
-python data/romanize.py
-```
-This produces 'corpus_aligned.txt' in the root directory.
-
 ---
 
 ## Training
