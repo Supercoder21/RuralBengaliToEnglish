@@ -44,12 +44,14 @@ python training/finetune_standard_to_english.py
 
 The following trained models are available: 
 
-ASR:
 
-Romanized Rural Bengali →  Standardized:
+Rural Bengali Audio → Rural Bengali Dialect:
 
-Unromanized Standardized Bengali → English:
+Rural Bengali → Standardized:
+
+Standardized Bengali → English:
 https://drive.google.com/drive/folders/1TN-4mb5qOu0QAo9m_DYMfm2hIc1i3MLv?usp=drive_link
+
 
 Download and place the folders in the root directory to use them for inference.
 
