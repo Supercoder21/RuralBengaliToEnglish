@@ -1,6 +1,6 @@
 # Rural Bengali Dialect → English: A Transformer-Based Translation Pipeline
 
-A sequence-to-sequence pipeline for transliterating rural Bengali dialect into romanized dialect into English via four stages stages: audio → rural Bengali ASR, rural → standard Bengali dialect normalization, romanized standard bengali dialect → unromanized standard bengali, and then standard Bengali → English translation.
+A sequence-to-sequence pipeline for transliterating rural Bengali dialect into romanized dialect into English via four stages: audio → Romanized rural Bengali audio speech recogniztion, rural → standard Bengali dialect normalization, standard Bengali dialect unromanization, and then standard Bengali → English translation.
 
 ---
 
@@ -38,7 +38,7 @@ This produces 'corpus_aligned.txt' in the root directory.
 
 ### Local (CPU only — slow)
 
-To Be Added (not recommended):
+Code To Be Added:
 ```
 python training/finetune_rural_to_standard.py
 python training/finetune_standard_to_english.py
@@ -48,13 +48,13 @@ python training/finetune_standard_to_english.py
 
 ## Pretrained Models
 
-Trained models are available: 
+The following trained models are available: 
 
 ASR:
 
 Romanized Rural Bengali →  Standardized:
 
-Unromanized Rural Bengali → English:
+Unromanized Standardized Bengali → English:
 https://drive.google.com/drive/folders/1TN-4mb5qOu0QAo9m_DYMfm2hIc1i3MLv?usp=drive_link
 
 Download and place the folders in the root directory to use them for inference.
