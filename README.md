@@ -1,6 +1,6 @@
 # Rural Bengali Dialect → English: A Transformer-Based Translation Pipeline
 
-A sequence-to-sequence pipeline for translating romanized rural Bengali dialect into English via two stages: rural → standard Bengali dialect normalization, then standard Bengali → English translation.
+A sequence-to-sequence pipeline for transliterating rural Bengali dialect into romanized dialect into English via four stages stages: audio → rural Bengali ASR, rural → standard Bengali dialect normalization, romanized standard bengali dialect → unromanized standard bengali, and then standard Bengali → English translation.
 
 ---
 
@@ -22,7 +22,7 @@ To generate the romanized parallel corpus, run:
 ```
 python data/romanize.py
 ```
-This produces `corpus_aligned.txt` in the root directory.
+This produces 'corpus_aligned.txt' in the root directory.
 
 ---
 
@@ -30,14 +30,15 @@ This produces `corpus_aligned.txt` in the root directory.
 
 ### Recommended: Google Colab (GPU)
 
-1. Open `training/colab_finetune.ipynb` in Google Colab
+1. Open 'training/colab_finetune.ipynb' in Google Colab
 2. Set runtime to T4 GPU: Runtime → Change runtime type → T4 GPU
 3. Run all cells in order
-4. Upload `corpus_aligned.txt` and `BanglaRegionalTextCorpus-tnQRMn.xlsx` when prompted
-5. All models save automatically to your Google Drive under `bengali_translation/`
+4. Upload 'corpus_aligned.txt' and 'BanglaRegionalTextCorpus-tnQRMn.xlsx' when prompted
+5. All models save automatically to your Google Drive under 'bengali_translation/'
 
 ### Local (CPU only — slow)
 
+To Be Added (not recommended):
 ```
 python training/finetune_rural_to_standard.py
 python training/finetune_standard_to_english.py
@@ -47,7 +48,14 @@ python training/finetune_standard_to_english.py
 
 ## Pretrained Models
 
-Trained model checkpoints are available on Google Drive: [link to be added after training]
+Trained models are available: 
+
+ASR:
+
+Romanized Rural Bengali →  Standardized:
+
+Unromanized Rural Bengali → English:
+https://drive.google.com/drive/folders/1TN-4mb5qOu0QAo9m_DYMfm2hIc1i3MLv?usp=drive_link
 
 Download and place the folders in the root directory to use them for inference.
 
