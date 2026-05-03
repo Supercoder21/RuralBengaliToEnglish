@@ -14,9 +14,10 @@ pip install -r requirements.txt
 
 ---
 
-## Data
 
-The corpus is sourced from the BanglaRegionalTextCorpus (Ahmed et al., 2026), available at https://doi.org/10.1016/j.dib.2026.001381. Download the Excel file and place it in the root directory. It is not included in this repo.
+## Data
+The corpus used for the text translation task is the Vashantor dataset (Khandaker et al., 2025). Download the train, validation and test JSON files for each dialect (Barishal, Chittagong, Mymensingh, Noakhali, Sylhet) and place them in the root directory.
+Running the first five cells in order in the Google Colab gives you the files vashantor_train.csv, vashantor_validation.csv, and vashantor_test.csv used for all training and evaluation.
 
 ---
 
