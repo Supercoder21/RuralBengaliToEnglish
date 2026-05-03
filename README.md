@@ -48,6 +48,7 @@ The following trained models are available:
 Rural Bengali Audio → Rural Bengali Dialect:
 
 Rural Bengali → Standardized:
+https://drive.google.com/drive/folders/12SfwmrvjmgIkfXjcqMBQnEjPH_ds2U64?usp=drive_link
 
 Standardized Bengali → English:
 https://drive.google.com/drive/folders/1TN-4mb5qOu0QAo9m_DYMfm2hIc1i3MLv?usp=drive_link
