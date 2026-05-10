@@ -26,6 +26,7 @@ Running the first five cells in order in the Google Colab gives you the files va
 ### Recommended: Google Colab (GPU)
 
 Translation Pipeline:
+
 Firstly, put translation models into Google Drive in the bengali_translation folder. 
 
 Next:
