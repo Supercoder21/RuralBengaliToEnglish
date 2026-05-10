@@ -21,10 +21,11 @@ Running the first five cells in order in the Google Colab gives you the files va
 
 ---
 
-## Training
+## How To Access
 
 ### Recommended: Google Colab (GPU)
 
+Translation Pipeline:
 Firstly, put translation models into Google Drive in the bengali_translation folder. 
 
 Next:
@@ -34,6 +35,8 @@ Next:
 4. Upload Vashantor Training, Testing, and Validation translation sets to the Drive.
 5. Models can be accesed and tested from there on out.
 
+ASR Pipeline:
+[TO BE ADDED]
 ### Local (CPU only — slow)
 
 Code To Be Added:
