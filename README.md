@@ -25,11 +25,14 @@ Running the first five cells in order in the Google Colab gives you the files va
 
 ### Recommended: Google Colab (GPU)
 
+Firstly, put translation models into Google Drive in the bengali_translation folder. 
+
+Next:
 1. Open 'training/colab_finetune.ipynb' in Google Colab
 2. Set runtime to T4 GPU: Runtime → Change runtime type → T4 GPU
 3. Run all cells in order
-4. Upload 'corpus_aligned.txt' and 'BanglaRegionalTextCorpus-tnQRMn.xlsx' when prompted
-5. All models save automatically to your Google Drive under 'bengali_translation/'
+4. Upload Vashantor Training, Testing, and Validation translation sets to the Drive.
+5. Models can be accesed and tested from there on out.
 
 ### Local (CPU only — slow)
 
@@ -52,10 +55,10 @@ Rural Bengali → Standardized:
 https://drive.google.com/drive/folders/12SfwmrvjmgIkfXjcqMBQnEjPH_ds2U64?usp=drive_link
 
 Standardized Bengali → English:
-https://drive.google.com/drive/folders/1TN-4mb5qOu0QAo9m_DYMfm2hIc1i3MLv?usp=drive_link
+Available directly in the Google Colab
 
 
-Download and place the folders in the root directory to use them for inference.
+Download and place the model files in the "bengali_translation" folder to use them for inference.
 
 ---
 
@@ -69,4 +72,4 @@ The `training/scratch_transformer_baseline/` folder contains an earlier attempt 
 
 If you use this work, please cite:
 
-Ahmed et al. (2026). BanglaRegionalTextCorpus: A Curated Dataset for Four Regional Bangla Dialects. Data in Brief. https://doi.org/10.1016/j.dib.2026.001381
+Faria, F. T. J., et al. (2024). Vashantor: A Large-scale Multilingual Benchmark Dataset [Dataset]. Mendeley Data. doi.org
