@@ -1,6 +1,6 @@
 # Rural Bengali Dialect → English: A Transformer-Based Translation Pipeline
 
-A three-stage sequence-to-sequence pipeline that takes rural Bengali dialect audio all the way to English text. Stage one converts audio to rural Bengali script via ASR. Stage two normalises the dialect to standard Bengali using a custom-trained mBART ensemble. Stage three translates standard Bengali to English. The full pipeline achieves 38.55 BLEU on the Vashantor benchmark.
+A three-stage sequence-to-sequence pipeline that takes rural Bengali dialect audio all the way to English text. Stage one converts audio to rural Bengali script via ASR. Stage two normalises the dialect to standard Bengali using a custom-trained mBART ensemble. Stage three translates standard Bengali to English. The r2s2e pipeline achieves 38.55 BLEU on the Vashantor benchmark. The full pipeline, with ASR, achieves (Avnish to Add After Integration) on the training set.
 
 ---
 
