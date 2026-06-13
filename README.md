@@ -35,7 +35,86 @@ Download the train, validation, and test JSON files for each dialect and place t
 
 **ASR Pipeline**
 
-To Be Added by Avnish
+
+An end-to-end system for translating rural Bengali dialect speech into English, comprising ASR, dialect normalisation, and cross-lingual translation.
+Pipeline
+Audio (WAV/MP3)  →  Whisper ASR  →  Bengali Script  →  Rural→Standard  →  Standard→English
+
+     ↑                  ↑                                    ↑                    ↑
+
+  yt-dlp          Whisper large-v3                     DACF+Curriculum      Helsinki-NLP +
+
+  16kHz mono       language=bn                          mBART-50 ensemble   Pipeline-aware mBART
+Repository Structure
+RuralBengaliToEnglish/
+
+├── data/
+
+│   ├── corpus_A/corpus_a.txt           # 874 sentences, Purulia dialect
+
+│   └── corpus_B/corpus_b.txt           # 9,993 sentences, standard Bengali
+
+├── embeddings/
+
+│   ├── sgns.py                         # SGNS from scratch (Avnish)
+
+│   ├── data_utils.py                   # Vocab, encoding, alias sampler
+
+│   └── sgns_embeddings_*.npy           # Trained embeddings (joint, DA, DB)
+
+├── alignment/
+
+│   └── eval_divergence.py              # Procrustes + JS divergence analysis
+
+├── metrics/
+
+│   ├── levenshtein.py                  # Levenshtein distance (Avnish)
+
+│   └── bleu.py                         # BLEU-1 to BLEU-4 (Avnish)
+
+├── model/
+
+│   └── attention.py                    # Scaled dot-product attention (Avnish)
+
+├── scripts/
+
+│   ├── asr_pipeline.py                 # Audio → Whisper → Bengali script
+
+│   └── scrape_dialect_audio.py         # YouTube dialect audio scraper
+
+├── figures/                            # All plots and visualisations
+
+├── requirements.txt
+
+└── README.md
+ASR Component
+Overview
+The ASR subsystem transcribes rural Bengali dialect audio into Bengali script using OpenAI's Whisper large-v3 (1.55B parameters). Whisper outputs Bengali script directly, which is passed unmodified to the downstream normalisation and translation models.
+Audio Acquisition
+Rural Bengali dialect audio was sourced from YouTube using yt-dlp. Eight long-form Purulia/Manbhumi dialect videos (folk interviews, village conversations, local cultural programming) totalling 296 minutes (~5 hours) were downloaded and converted to 16kHz mono WAV.
+
+python scripts/scrape_dialect_audio.py --url-file urls.txt --output-dir data/dialect_audio
+Whisper Inference
+Whisper large-v3 was applied off-the-shelf with language="bn" and task="transcribe". No fine-tuning was performed — Whisper's pre-training includes Bengali speech data, and no ground-truth dialect transcriptions exist for supervised fine-tuning.
+
+python scripts/asr_pipeline.py \
+
+    --da-audio-dir data/dialect_audio \
+
+    --output-dir data \
+
+    --whisper-model large-v3
+
+Output: Bengali script transcriptions (one sentence per line). After deduplication and quality filtering: 874 sentences from 1,006 raw.
+Standard Bengali Corpus
+OpenSLR-53 (~196K utterances, CC BY-SA 4.0) provides standard Bengali transcriptions. Subsampled to 10,000 sentences.
+
+python scripts/asr_pipeline.py --output-dir data --skip-da
+Trained Models
+Rural → Standard Bengali (DACF+Curriculum ensemble): Google Drive
+BLEU: 36.74 | chrF: 66.68 (+5.10 BLEU over mBART-50 baseline)
+Standard → English (Pipeline-aware + span fusion): BLEU: 38.55
+
 
 ---
 
@@ -72,10 +151,6 @@ Download the models and place them inside a folder called `bengali_translation` 
 
 No single model file produces the final result on its own, the pipeline chains everything through code. At the r2s stage the DACF and curriculum models are logit-averaged during beam search, blending their token probability distributions at every decoding step into a single normalized Bengali output. At the s2e stage both Helsinki and the pipeline-aware mBART generate candidates, beam scores are compared, the more confident model's output is selected as the base, and span-level fusion is applied to refine it further by swapping word spans that score better under the model's own loss. The inference cell at the bottom of the notebook does all of this end to end. It loads the models and it handles the rest.
 
-**ASR Pipeline**
-
-- [ASR_Pipeline] - to be added by Avnish
-
 **How the model is integrated with r2s2e**
 
 To Be Added
@@ -94,9 +169,20 @@ Full r2s2e pipeline on the Vashantor test set:
 
 ## Linguistic Divergence
 
-A lingustic study between rural Bengali and standard Bengali was also conducted in an effort to learn how similar different dialects were from their standard versions. The results, which include word-embeddings, hub-words, and alignment coefficients, are as followed:
+Linguistic Divergence Analysis
+For the divergence analysis only (not the main pipeline), Bengali script is transliterated to ITRANS romanisation for SGNS/GloVe embedding training.
 
-To Be Added by Aarav and Avnish
+Metric
+Result
+Shared vocabulary (freq≥3)
+3,022 types
+Neighbourhood overlap (DA vs DB)
+0.026 mean (70% zero overlap)
+JS divergence (τ=10)
+Bimodal: ~700 words at JS≈0.69, ~300 at JS≈0.3
+Procrustes anchor Δ
+0.636 (alignment quality poor due to DA corpus size)
+
 
 ---
 
